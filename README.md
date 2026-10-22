@@ -39,11 +39,21 @@ There is no missing field. What is missing is a time source the author cannot re
 ## Running it
 
 ```
-python run.py        # the B1 / B2a / B2b tables, the counts, and the circularity check
-python ablation.py   # per-field ablation, producing the last column of FIELD_LIST.md
+python demo.py        # one oversight step, walked end to end (three scenarios)
+python selfcheck.py   # the repository's own evaluation - asserts every number below
+python run.py         # the B1 / B2a / B2b tables, the counts, and the circularity check
+python ablation.py    # per-field ablation, producing the last column of FIELD_LIST.md
 ```
 
-No dependencies beyond the Python standard library. `FIELD_LIST.md` lists the minimum fields the rule needs, who would have to produce each one, and what happens when it is missing — measured, not inferred.
+No dependencies beyond the Python standard library.
+
+**`demo.py`** prints, for three scenarios against the same case revision: what the package says, what the record says, what each artefact can establish on its own, and what the cross-artefact rule concludes. Scenario B is the defect; scenario C is the documented hole.
+
+**`examples/`** holds the same three cases as standalone JSON pairs, each with an `expected` verdict and a note on what a reader should see. Start with `examples/README.md`.
+
+**`selfcheck.py`** is the evaluation. It asserts the counts in this file, the ablation table in `FIELD_LIST.md`, every example's verdict, and the demo's outcome — and it includes a deliberate negative control that must fail, so that a silent breakage cannot pass. Exit code is 0 only if all of that holds.
+
+`FIELD_LIST.md` lists the minimum fields the rule needs, who would have to produce each one, and what happens when it is missing — measured, not inferred.
 
 The `@{hash:sNNN}` and `@{ts:sNNN}` markers in `fixtures/records.json` are placeholders that `run.py` substitutes with real values at load time.
 

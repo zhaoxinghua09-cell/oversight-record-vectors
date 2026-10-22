@@ -1,0 +1,26 @@
+{
+  "example": "03-backdated",
+  "what_a_reader_should_see": "This is the same defect as example 02, with one field changed: the signing time is moved to after execution. The rule now reads the record as a post-hoc audit and passes it. This is the hole the repository documents rather than closes.",
+  "package": {
+    "package_id": "PKG-OSBRIEF-01-a",
+    "presented_set": ["s003", "s005"],
+    "note": "Identical to example 02."
+  },
+  "record": {
+    "rid": "EX-03",
+    "reviewed": "s007",
+    "executed": "s008",
+    "signed_at": "2026-10-19T16:20:00Z",
+    "declared_act_type": "oversight_decision",
+    "note": "execution was at 16:00; the signing time now reads 16:20"
+  },
+  "own_checks": {
+    "record_well_formed": true,
+    "reviewed_version_exists": true,
+    "executed_version_exists": true
+  },
+  "expected": "pass",
+  "why": "Signed after execution, so the act type is derived as a post-hoc audit, and a post-hoc audit is permitted to name the executed version. Nothing in the record can refute the signing time it carries, so no schema change closes this. It needs a time source the record's author cannot rewrite.",
+  "contrast_with": "02-never-presented",
+  "only_difference": "signed_at: 2026-10-19T11:40:00Z -> 2026-10-19T16:20:00Z"
+}

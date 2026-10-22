@@ -1,0 +1,23 @@
+{
+  "example": "02-never-presented",
+  "what_a_reader_should_see": "Every check either artefact can run on itself passes. The record is well formed, and s007 exists in the revision. The defect exists only in the relation: the package never presented s007.",
+  "package": {
+    "package_id": "PKG-OSBRIEF-01-a",
+    "presented_set": ["s003", "s005"],
+    "note": "Two clarification rounds; neither round presented s007."
+  },
+  "record": {
+    "rid": "EX-02",
+    "reviewed": "s007",
+    "executed": "s008",
+    "signed_at": "2026-10-19T11:40:00Z",
+    "declared_act_type": "oversight_decision"
+  },
+  "own_checks": {
+    "record_well_formed": true,
+    "reviewed_version_exists": true,
+    "executed_version_exists": true
+  },
+  "expected": "defect",
+  "why": "s007 exists but is outside presented_set. This is the object the repository exists to make visible: a record that passes its own checks while citing a version nobody presented."
+}

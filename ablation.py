@@ -89,3 +89,4 @@ print("-" * 118)
 for name, kw in CASES:
     fp, fn, fi, fo, det = score(**kw)
     print(f"{name:<42}{fp:>5}{fn:>5}{fi:>13}{fo:>11}  {', '.join(det) if det else '(none)'}")
+    print(f"@RESULT|{name}|{fp}|{fn}|{fi}|{fo}")

@@ -1,0 +1,23 @@
+{
+  "example": "01-legitimate",
+  "what_a_reader_should_see": "Both artefacts are consistent with each other. The record names s005; the package says it presented s003 and s005. No defect.",
+  "package": {
+    "package_id": "PKG-OSBRIEF-01-a",
+    "presented_set": ["s003", "s005"],
+    "note": "Two clarification rounds; the second round presented s005."
+  },
+  "record": {
+    "rid": "EX-01",
+    "reviewed": "s005",
+    "executed": "s006",
+    "signed_at": "2026-10-19T11:40:00Z",
+    "declared_act_type": "oversight_decision"
+  },
+  "own_checks": {
+    "record_well_formed": true,
+    "reviewed_version_exists": true,
+    "executed_version_exists": true
+  },
+  "expected": "pass",
+  "why": "s005 is in presented_set, and the signing time precedes execution, so this is a pre-decision naming a version that was actually presented."
+}
