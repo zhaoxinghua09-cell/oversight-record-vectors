@@ -6,6 +6,8 @@ A small reference implementation and a fourteen-record fixture, made to answer o
 
 This repository accompanies a comment posted to the ITU-T Focus Group on Trust and Identity for Humans and Agentic AI (FG-TIDA), issue #16. It exists so that the numbers in that comment can be re-run rather than taken on trust.
 
+![One oversight step, three pairs](figure.svg)
+
 ## What it measures
 
 A record is treated as defective under a rule, and the rule is checked against a fixture in which the truth is known:
