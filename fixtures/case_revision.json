@@ -1,0 +1,30 @@
+{
+  "case_revision": "CR-OSBRIEF-01",
+
+  "state_versions": [
+    {"id": "s001", "produced_at": "2026-10-19T09:00:00Z", "content": {"stage": "plan", "items": 6}},
+    {"id": "s002", "produced_at": "2026-10-19T09:40:00Z", "content": {"stage": "draft", "sources": 4}},
+    {"id": "s003", "produced_at": "2026-10-19T10:30:00Z", "content": {"stage": "draft", "sources": 4, "citations": 3}},
+    {"id": "s004", "produced_at": "2026-10-19T11:10:00Z", "content": {"stage": "revised", "sources": 4, "citations": 5}},
+    {"id": "s005", "produced_at": "2026-10-19T11:55:00Z", "content": {"stage": "presented", "sources": 4, "citations": 5}},
+    {"id": "s006", "produced_at": "2026-10-19T12:30:00Z", "content": {"stage": "executed", "sources": 4, "citations": 5}},
+    {"id": "s007", "produced_at": "2026-10-19T15:20:00Z", "content": {"stage": "rerun", "sources": 6, "citations": 7}},
+    {"id": "s008", "produced_at": "2026-10-19T16:00:00Z", "content": {"stage": "executed", "sources": 6, "citations": 7}}
+  ],
+
+  "_presented_set_note": "L3: the versions the package has submitted form a set, not a single value. Two clarification rounds presented s003 and s005 respectively.",
+  "presented_set": ["s003", "s005"],
+
+  "_permitted_list_note": "The enumeration used by B1 (R-A, the reply as drafted): identical to presented_set, so that B1's score is not manipulated by widening or narrowing it.",
+  "permitted_list": ["s003", "s005"],
+
+  "_aliases_declared_note": "The declared alias table used in L1 declared mode. The 'poison' entry is deliberately planted, for NEG_ALIAS_CONFUSION.",
+  "aliases_declared": {
+    "sha256:poison00c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00": "s005"
+  },
+
+  "package": {
+    "package_id": "PKG-OSBRIEF-01-a",
+    "presented_set": ["s003", "s005"]
+  }
+}

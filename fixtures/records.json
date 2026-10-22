@@ -1,0 +1,156 @@
+{
+  "_note": "14 records: 5 defective / 8 legitimate / 1 ambiguous (ambiguous counted separately, not into FP or FN). The @{hash:sNNN} and @{ts:sNNN} markers in reviewed are placeholders, substituted by run.py at load time - see the construction note in FIELD_LIST.md.",
+
+  "records": [
+    {
+      "rid": "NEG_OD",
+      "desc": "pre-decision: reviewed s007 (never submitted), then executed s008",
+      "reviewed": "s007",
+      "executed": "s008",
+      "signed_at": "2026-10-19T15:30:00Z",
+      "declared_act_type": "oversight_decision",
+      "ground_truth": "defect",
+      "scope": "in",
+      "why_defect": "signing before execution -> pre-decision; s007 not in presented_set"
+    },
+    {
+      "rid": "NEG_DISGUISED",
+      "desc": "the same defect, with only the self-declared act_type changed to post_hoc_audit",
+      "reviewed": "s007",
+      "executed": "s008",
+      "signed_at": "2026-10-19T15:30:00Z",
+      "declared_act_type": "post_hoc_audit",
+      "ground_truth": "defect",
+      "scope": "in",
+      "why_defect": "the self-declared value is ignored by R-D'; the timestamp still shows a pre-decision"
+    },
+    {
+      "rid": "NEG_PRESENTED_SET",
+      "desc": "the package submitted the set {s003,s005}; the record reviewed s004, which was never submitted",
+      "reviewed": "s004",
+      "executed": "s006",
+      "signed_at": "2026-10-19T11:40:00Z",
+      "declared_act_type": "oversight_decision",
+      "ground_truth": "defect",
+      "scope": "in",
+      "why_defect": "s004 exists but is outside the submitted set -> a single-value presented cannot fix this; only a set can"
+    },
+    {
+      "rid": "NEG_ALIAS_CONFUSION",
+      "desc": "two identifiers for one entity mixed: a poisoned alias entry launders a review of s007 into s005",
+      "reviewed": "sha256:poison00c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00c0ffee00",
+      "executed": "s008",
+      "true_reviewed": "s007",
+      "signed_at": "2026-10-19T15:30:00Z",
+      "declared_act_type": "oversight_decision",
+      "ground_truth": "defect",
+      "scope": "out",
+      "why_defect": "what was actually reviewed is s007; the declared table points that hash at s005. Whether this must be caught depends on whether a false attestation is in scope"
+    },
+    {
+      "rid": "NEG_BACKDATED",
+      "desc": "a pre-decision forged as a post-hoc audit: reviewed s007, with the signing time written after execution",
+      "reviewed": "s007",
+      "executed": "s008",
+      "true_signed_at": "2026-10-19T15:30:00Z",
+      "signed_at": "2026-10-19T16:20:00Z",
+      "declared_act_type": "post_hoc_audit",
+      "ground_truth": "defect",
+      "scope": "out",
+      "why_defect": "a forged timestamp makes the derived act_type wrong too. This is the L2 circularity problem"
+    },
+
+    {
+      "rid": "P_DEFERRED_OK",
+      "desc": "legitimate: reviewed s005 (submitted), executed s006",
+      "reviewed": "s005",
+      "executed": "s006",
+      "signed_at": "2026-10-19T12:10:00Z",
+      "declared_act_type": "oversight_decision",
+      "ground_truth": "legit",
+      "scope": "in"
+    },
+    {
+      "rid": "P_CLARIF_SET",
+      "desc": "legitimate: the first clarification round reviewed s003. A single-value presented false-positives here; a set does not",
+      "reviewed": "s003",
+      "executed": "s006",
+      "signed_at": "2026-10-19T10:50:00Z",
+      "declared_act_type": "oversight_decision",
+      "ground_truth": "legit",
+      "scope": "in"
+    },
+    {
+      "rid": "P_POSTHOC_EXEC",
+      "desc": "legitimate: a post-hoc audit of the version that actually ran (reviewed = executed = s006)",
+      "reviewed": "s006",
+      "executed": "s006",
+      "signed_at": "2026-10-19T12:50:00Z",
+      "declared_act_type": "post_hoc_audit",
+      "ground_truth": "legit",
+      "scope": "in"
+    },
+    {
+      "rid": "P_ENUM_LAG",
+      "desc": "legitimate: a later review of the early version s002 (the enumeration has moved on; enumeration lag)",
+      "reviewed": "s002",
+      "executed": "s008",
+      "signed_at": "2026-10-19T16:30:00Z",
+      "declared_act_type": "post_hoc_audit",
+      "ground_truth": "legit",
+      "scope": "in"
+    },
+    {
+      "rid": "P_INTERVAL_BOUNDARY",
+      "desc": "legitimate: signing time immediately after the reviewed version's production (produced 11:55, signed 11:56) - a boundary case",
+      "reviewed": "s005",
+      "executed": "s006",
+      "signed_at": "2026-10-19T11:56:00Z",
+      "declared_act_type": "oversight_decision",
+      "ground_truth": "legit",
+      "scope": "in"
+    },
+    {
+      "rid": "P_ALIAS_LEGIT",
+      "desc": "legitimate: s005 written with a content hash (the correct hash, not a mixed identifier)",
+      "reviewed": "@{hash:s005}",
+      "executed": "s006",
+      "signed_at": "2026-10-19T12:10:00Z",
+      "declared_act_type": "oversight_decision",
+      "ground_truth": "legit",
+      "scope": "in"
+    },
+    {
+      "rid": "P_TS_ALIAS",
+      "desc": "legitimate: s005 written with a production timestamp (the third normalisation route)",
+      "reviewed": "@{ts:s005}",
+      "executed": "s006",
+      "signed_at": "2026-10-19T12:10:00Z",
+      "declared_act_type": "oversight_decision",
+      "ground_truth": "legit",
+      "scope": "in"
+    },
+    {
+      "rid": "P_ZERO_DIVERGENCE",
+      "desc": "legitimate: not deferred, reviewed = executed = s005, and signing precedes that version's production (a pre-decision)",
+      "reviewed": "s005",
+      "executed": "s005",
+      "signed_at": "2026-10-19T11:54:00Z",
+      "declared_act_type": "oversight_decision",
+      "ground_truth": "legit",
+      "scope": "in"
+    },
+
+    {
+      "rid": "AMB_OD_UNRECORDED",
+      "desc": "ambiguous: s004 reviewed as a pre-decision, but the package may have failed to record one submission round",
+      "reviewed": "s004",
+      "executed": "s006",
+      "signed_at": "2026-10-19T11:40:00Z",
+      "declared_act_type": "oversight_decision",
+      "ground_truth": "ambiguous",
+      "scope": "in",
+      "why_ambiguous": "if s004 really was submitted and the package omitted it, this is legitimate; if not, it is a defect. The material does not decide it, so it is counted separately and not into FP or FN"
+    }
+  ]
+}
